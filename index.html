@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Composition</title>
+
+    <!-- BOOSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- VUE -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+    <div id="app"> <!-- id que se pasa al mount -->
+        <h1>{{ mayusculasTexto }}</h1>
+        <h2 
+            class="bg-black"
+            :class="colorCantidad"
+        >
+            Mi saldo es: {{ cantidad }}
+        </h2>
+        <h2>{{ cantidad > 1000 ? 'es mayor que mil' : 'es menor o igual a mil' }}</h2>
+        <a :href="enlace">Ir al enlace</a>
+        <hr>
+        <h3 v-if="estado">Cuenta Activa</h3>
+        <h3 v-else>Cuenta inactiva</h3>
+        <hr>
+        <h4>Mis servicios disponibles (V-for)</h4>
+        <ul >
+            <li v-for="(item, index) in servicios" :key="index">{{item}}</li>
+        </ul>
+        <hr>
+        <button v-on:click="agregarSaldo">Agregar Saldo</button>
+        <button @click="quitarSaldo" :disabled="cantidad == 0">Quitar Saldo</button>
+   
+   
+        <footer-banco 
+            :valor="cantidad"
+            fecha = "marzo 2023"
+        >
+        </footer-banco>
+   
+    </div>
+    
+    <script src="main.js"></script>
+    <script src="component/Footer.js"></script> <!-- despues del main y antes del mount -->
+    <script>
+        const mountedApp = app.mount('#app'); //montar la aplicacion
+    </script>
+</body>
+</html>
